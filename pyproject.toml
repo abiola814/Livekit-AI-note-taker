@@ -3,9 +3,9 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "livekit-meeting-summarizer"
+name = "livekit-ai-note-taker"
 version = "0.1.0"
-description = "LiveKit agent that transcribes meetings with Deepgram and streams rolling summaries via Groq/OpenRouter/OpenAI."
+description = "AI note taker for LiveKit: listens to meeting audio, transcribes with Deepgram, and streams concise summaries via Groq/OpenRouter/OpenAI."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "Proprietary" }
@@ -31,10 +31,11 @@ dependencies = [
 
 [project.scripts]
 livekit-summarizer-worker = "livekit_meeting_summarizer.runner:main"
+livekit-ai-note-taker = "livekit_meeting_summarizer.runner:main"
 
 [project.urls]
-Homepage = "https://github.com/urcalls/livekit-meeting-summarizer"
-Issues = "https://github.com/urcalls/livekit-meeting-summarizer/issues"
+Homepage = "https://github.com/abiola814/Livekit-AI-note-taker"
+Issues = "https://github.com/abiola814/Livekit-AI-note-taker/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
