@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "livekit-ai-note-taker"
-version = "0.1.7"
-description = "AI note taker for LiveKit that listens to meeting audio, transcribes with Deepgram, and streams concise summaries via Groq/OpenRouter/OpenAI."
+version = "0.1.8"
+description = "AI note taker for LiveKit that listens to meeting audio, transcribes with Deepgram,AWS and streams concise summaries via Groq/OpenRouter(ollama)/OpenAI."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "Proprietary" }
