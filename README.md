@@ -1,6 +1,6 @@
 # AI Note Taker for LiveKit
 
-An installable Python package that runs a LiveKit agent which listens to room audio, transcribes with Deepgram, and publishes concise meeting notes/summaries using Groq, OpenRouter, or OpenAI-compatible models.
+An installable Python package that runs a LiveKit agent which listens to room audio, transcribes with Deepgram and AWS transcribe, and publishes concise meeting notes/summaries using Groq, OpenRouter(ollama), or OpenAI-compatible models.
 
 ## Installation
 
