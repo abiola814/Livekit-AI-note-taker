@@ -3,7 +3,7 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "livekit-meeting-summarizer"
+name = "livekit-ai-note-taker"
 version = "0.1.2"
 description = "LiveKit agent that transcribes meetings with Deepgram and streams rolling summaries via Groq/OpenRouter/OpenAI."
 readme = "README.md"
