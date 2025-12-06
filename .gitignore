@@ -7,6 +7,16 @@ venv/
 __pycache__/
 *.py[cod]
 *.egg-info/
+build/
+dist/
+.pycache/
+*.whl
+*.tar.gz
+build/
+dist/
+.pycache/
+*.whl
+*.tar.gz
 
 # Editors
 .idea/
@@ -14,3 +24,5 @@ __pycache__/
 
 # OS
 .DS_Store
+
+testfile
