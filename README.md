@@ -41,7 +41,7 @@ The command validates configuration, connects to LiveKit, and starts publishing 
 
 ```python
 import asyncio
-from livekit_meeting_summarizer import run_worker
+from livekit_ai_note_taker import run_worker
 
 asyncio.run(run_worker())
 ```

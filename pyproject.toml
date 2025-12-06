@@ -30,8 +30,8 @@ dependencies = [
 ]
 
 [project.scripts]
-livekit-summarizer-worker = "livekit_meeting_summarizer.runner:main"
-livekit-ai-note-taker = "livekit_meeting_summarizer.runner:main"
+livekit-summarizer-worker = "livekit_ai_note_taker.runner:main"
+livekit-ai-note-taker = "livekit_ai_note_taker.runner:main"
 
 [project.urls]
 Homepage = "https://github.com/abiola814/Livekit-AI-note-taker"

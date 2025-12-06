@@ -9,7 +9,7 @@ Prereqs:
 import asyncio
 import logging
 
-from livekit_meeting_summarizer import run_worker
+from livekit_ai_note_taker import run_worker
 
 
 def main() -> None:
