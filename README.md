@@ -1,11 +1,13 @@
-# LiveKit Meeting Summarizer
+# AI Note Taker for LiveKit
 
-An installable Python package that runs a LiveKit agent which listens to room audio, transcribes with Deepgram, and publishes rolling meeting summaries using Groq, OpenRouter, or OpenAI-compatible models.
+An installable Python package that runs a LiveKit agent which listens to room audio, transcribes with Deepgram, and publishes concise meeting notes/summaries using Groq, OpenRouter, or OpenAI-compatible models.
 
 ## Installation
 
 ```bash
 pip install .
+# or once published:
+pip install livekit-ai-note-taker
 ```
 
 ## Configuration
@@ -28,7 +30,8 @@ Set the following environment variables (a `.env` file is supported via `python-
 ## Running the worker
 
 ```bash
-livekit-summarizer-worker
+
+livekit-ai-note-taker
 ```
 
 The command validates configuration, connects to LiveKit, and starts publishing summaries to the room via `publish_data` on the local participant.
@@ -37,9 +40,9 @@ The command validates configuration, connects to LiveKit, and starts publishing 
 
 ```python
 import asyncio
-from livekit_meeting_summarizer import run_worker
+from livekit_ai_note_taker import run_worker
 
 asyncio.run(run_worker())
 ```
 
-You can also import `MeetingSummarizer` if you want to wire custom events or prompts in your own application. Logging is left to the host application; configure it as needed (e.g. `logging.basicConfig(level=logging.INFO)`).
+You can also import `NoteTakerAgent` if you want to wire custom events or prompts in your own application. Logging is left to the host application; configure it as needed (e.g. `logging.basicConfig(level=logging.INFO)`).

@@ -40,7 +40,7 @@ def patch_aiohttp_ssl() -> None:
     logger.debug("aiohttp SSL verification disabled for connectors")
 
 
-class MeetingSummarizer:
+class NoteTakerAgent:
     def __init__(self, room: rtc.Room):
         if config.DISABLE_SSL_VERIFY:
             patch_aiohttp_ssl()
@@ -73,7 +73,7 @@ class MeetingSummarizer:
             raise ValueError(f"Unsupported provider: {config.PROVIDER}")
 
     async def start(self) -> None:
-        logger.info("MeetingSummarizer starting for room: %s", self.room.name)
+        logger.info("NoteTakerAgent starting for room: %s", self.room.name)
         asyncio.create_task(self.periodic_summary())
 
         @self.room.on("track_subscribed")
@@ -402,8 +402,8 @@ Neutral, precise, professional, and adaptive.
             logger.error("Error broadcasting summary: %s", exc, exc_info=True)
 
 
-async def meeting_summarizer_agent(ctx: agents.JobContext):
-    logger.info("Agent dispatched - room %s", ctx.job.room.name)
+async def note_taker_agent(ctx: agents.JobContext):
+    logger.info("Note taker agent dispatched - room %s", ctx.job.room.name)
 
     try:
         metadata = json.loads(ctx.job.metadata or "{}")
@@ -425,8 +425,8 @@ async def meeting_summarizer_agent(ctx: agents.JobContext):
     logger.info("Connected as '%s'", display_name)
 
     room = ctx.room
-    summarizer = MeetingSummarizer(room)
-    await summarizer.start()
+    note_taker = NoteTakerAgent(room)
+    await note_taker.start()
 
     disconnect_event = asyncio.Event()
     logger.info("Waiting for room '%s' to disconnect...", room.name)
@@ -437,12 +437,12 @@ async def meeting_summarizer_agent(ctx: agents.JobContext):
         disconnect_event.set()
 
     await disconnect_event.wait()
-    if summarizer.total_transcripts:
+    if note_taker.total_transcripts:
         try:
             final_sender = FinalSummarySender(
                 room=room.name,
-                total_transcripts=summarizer.total_transcripts,
-                interval_summaries=summarizer.interval_summaries,
+                total_transcripts=note_taker.total_transcripts,
+                interval_summaries=note_taker.interval_summaries,
             )
             await final_sender.generate_and_send_final_summary()
         except Exception as exc:  # pragma: no cover - defensive logging
@@ -624,13 +624,13 @@ server = agents.AgentServer()
 
 @server.rtc_session(agent_name=config.AGENT_NAME)
 async def rtc_session(ctx: agents.JobContext):
-    await meeting_summarizer_agent(ctx)
+    await note_taker_agent(ctx)
 
 
 __all__ = [
-    "MeetingSummarizer",
+    "NoteTakerAgent",
     "FinalSummarySender",
-    "meeting_summarizer_agent",
+    "note_taker_agent",
     "rtc_session",
     "server",
     "patch_aiohttp_ssl",
